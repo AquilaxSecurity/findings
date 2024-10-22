@@ -1,0 +1,26 @@
+name: AquilaX Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  security-events: write
+
+env:
+  ORG_ID: "6606c1f654f58aa2a323075d"
+  GROUP_ID: "6699310b30a09ab96273dea3"
+
+jobs:
+  aquilax_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
