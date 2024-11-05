@@ -1,0 +1,53 @@
+{
+  "frequency": "Once",
+  "ignore": [
+    "DVIA-v2/**",
+    "advisory-database/**",
+    "semgrep-rules/**"
+  ],
+  "notify_on_failure": true,
+  "scanners": [
+    {
+      "compliance": true,
+      "enforced": true
+    },
+    {
+      "enforced": true,
+      "secret": true
+    },
+    {
+      "enforced": true,
+      "pii": true
+    },
+    {
+      "enforced": false,
+      "sast": true
+    },
+    {
+      "enforced": false,
+      "sca": true
+    },
+    {
+      "container": true,
+      "enforced": false
+    },
+    {
+      "enforced": true,
+      "iac": true
+    },
+    {
+      "api": true,
+      "enforced": true
+    },
+    {
+      "enforced": true,
+      "malware": true
+    }
+  ],
+  "tags": [
+    "all-scanners",
+    "example",
+    "special-project"
+  ],
+  "testing": false
+}
