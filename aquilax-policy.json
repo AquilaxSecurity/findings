@@ -1,7 +1,6 @@
 {
   "frequency": "Once",
   "ignore": [
-    "DVIA-v2/**",
     "advisory-database/**",
     "semgrep-rules/**"
   ],
