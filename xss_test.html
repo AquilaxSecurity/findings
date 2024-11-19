@@ -11,7 +11,6 @@
 
     <p>
         Hello, 
-        <!-- Vulnerable to XSS -->
         <script>
             var user_input = "<?php echo $_GET['user_input']; ?>";
             document.write(user_input);
