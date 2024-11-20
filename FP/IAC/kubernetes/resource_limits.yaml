@@ -6,7 +6,35 @@ spec:
   containers:
     - name: app-container
       image: nginx
+      securityContext:
+        runAsUser: 1000                       # Run container as a high UID
+        runAsNonRoot: true                    # Ensure the container runs as a non-root user
+        allowPrivilegeEscalation: false       # Do not allow privilege escalation
+        capabilities:
+          drop:
+            - ALL                             # Minimize capabilities assigned
+        seccompProfile:
+          type: RuntimeDefault                # Set seccomp profile
       resources:
         limits:
           memory: "512Mi"
           cpu: "500m"
+      volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx
+          readOnly: true                      # Use a read-only filesystem
+      livenessProbe:
+        httpGet:
+          path: /
+          port: 80                            # Add liveness probe
+        initialDelaySeconds: 5
+        periodSeconds: 10
+      readinessProbe:
+        httpGet:
+          path: /
+          port: 80                            # Add readiness probe
+        initialDelaySeconds: 5
+        periodSeconds: 10
+  volumes:
+    - name: config-volume
+      emptyDir: {}
