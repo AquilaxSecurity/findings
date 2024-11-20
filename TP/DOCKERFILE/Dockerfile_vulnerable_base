@@ -1,0 +1,2 @@
+FROM ubuntu:14.04
+RUN apt-get update && apt-get install -y openssl=1.0.1-4ubuntu5.39

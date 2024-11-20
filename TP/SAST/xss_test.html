@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>XSS Test</title>
+</head>
+<body>
+    <form method="get">
+        <input type="text" name="user_input">
+        <input type="submit">
+    </form>
+
+    <p>
+        Hello, 
+        <script>
+            var user_input = "<?php echo $_GET['user_input']; ?>";
+            document.write(user_input);
+        </script>
+    </p>
+</body>
+</html>

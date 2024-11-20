@@ -1,0 +1,3 @@
+FROM nginx:1.18
+RUN echo "root:weakpassword" | chpasswd
+RUN chmod 777 /etc/nginx/nginx.conf

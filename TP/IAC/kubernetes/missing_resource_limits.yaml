@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-with-no-limits
+spec:
+  containers:
+    - name: app-container
+      image: nginx
