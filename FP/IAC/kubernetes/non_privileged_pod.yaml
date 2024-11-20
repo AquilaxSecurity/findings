@@ -2,25 +2,29 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: secure-pod
+  namespace: secure-namespace                         # Avoid using the default namespace
   annotations:
     container.apparmor.security.beta.kubernetes.io/secure-container: runtime/default  # Add AppArmor profile
+    seccomp.security.alpha.kubernetes.io/pod: runtime/default                         # Add pod-level seccomp profile
 spec:
-  serviceAccountName: default
-  automountServiceAccountToken: false             # Disable service account token automount
+  serviceAccountName: custom-service-account         # Use a custom service account
+  automountServiceAccountToken: false               # Disable service account token automount
   containers:
     - name: secure-container
-      image: nginx@sha256:123abc456def789ghi       # Use an image with a digest
+      image: nginx@sha256:123abc456def789ghi         # Use an image with a digest
       securityContext:
-        privileged: false                         # Ensure container is not privileged
-        runAsNonRoot: true                        # Enforce non-root execution
-        runAsUser: 1000                           # Specify a high UID
+        privileged: false                           # Ensure container is not privileged
+        runAsNonRoot: true                          # Enforce non-root execution
+        runAsUser: 1000                             # Specify a high UID
+        allowPrivilegeEscalation: false             # Disable privilege escalation
         capabilities:
-          drop:                                   # Drop unnecessary capabilities
+          drop:                                     # Drop unnecessary capabilities
             - ALL
+        readOnlyRootFilesystem: true               # Use a read-only filesystem
       resources:
         requests:
-          cpu: "250m"                             # Set CPU request
-          memory: "128Mi"                         # Set memory request
+          cpu: "250m"                               # Set CPU request
+          memory: "128Mi"                           # Set memory request
         limits:
           cpu: "500m"                             # Set CPU limit
           memory: "256Mi"                         # Set memory limit
