@@ -1,0 +1,40 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+Date: Fri, 15 Jan 2024 12:55:00 GMT
+
+{
+    "user_id": 1234,
+    "first_name": "John",
+    "last_name": "Doe",
+    "email": "johndoe@example.com",
+    "phone": "+1-444-123-8663",
+    "address": {
+        "street": "123 Back Street",
+        "city": "Greenfield",
+        "state": "LA",
+        "postal_code": "367804",
+        "country": "USA"
+    },
+    "date_of_birth": "1992-10-02",
+    "social_security_number": "123-65-6789",
+    "passport_number": "A12345679",
+    "driver_license_number": "D123456739",
+    "credit_card": {
+        "number": "4111-1111-1111-1111",
+        "expiration_date": "12/27",
+        "cvv": "321"
+    },
+    "bank_account": {
+        "account_number": "9876543212"
+    },
+    "employment_info": {
+        "employer": "Techie Inc.",
+        "job_title": "Security engineer Engineer",
+        "employee_id": "234568"
+    },
+    "healthcare_info": {
+        "insurance_provider": "HealthCare premium plan",
+        "policy_number": "HC125456780",
+        "medical_conditions": ["Hypertension", "Diabetes"]
+    }
+}
