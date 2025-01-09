@@ -1,7 +1,7 @@
 from flask import Flask, request
 
 app = Flask(__name__)
-
+#It contains username and password in plaintext.
 USERNAME = "admin"
 PASSWORD = "123456"
 
