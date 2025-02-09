@@ -1,11 +1,13 @@
 const express = require('express');
 const app = express();
-const escape = require('lodash.escape');
+const escape = require('escape-html');
 
 app.get('/search', (req, res) => {
   let searchTerm = req.query.term || '';
 
-  searchTerm = escape(searchTerm);
+  const safeSearchTerm = escape(searchTerm);
 
-  res.send(`<h1>Search results for: ${searchTerm}</h1>`);
+  res.send(`<h1>Search results for: ${safeSearchTerm}</h1>`);
 });
+
+app.listen(3000, () => console.log('App running on port 3000'));
